@@ -1,4 +1,4 @@
-#
+
 # This is free software, lisence use MIT.
 # 
 # Copyright (C) 2019 P3TERX <https://p3terx.com>
@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: yaoling1.0(x86)
+name: yaoling2.0(x86)（Enterprise Edition）
 
 on:
   push:
@@ -56,6 +56,14 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
 
+     - name: 自定义插件主题。
+        run: |
+          cd package
+          mkdir openwrt-packages
+          cd openwrt-packages
+          git clone https://github.com/rosywrt/luci-theme-purple.git
+          
+          
       - name: Update feeds
         run: |
           ./scripts/feeds update -a
@@ -142,32 +150,22 @@ jobs:
 
           # 常用LuCI插件选择:
           cat >> .config <<EOF
-          CONFIG_PACKAGE_luci-app-adbyby-plus=y
-          CONFIG_PACKAGE_luci-app-aria2=y
-          CONFIG_PACKAGE_luci-app-baidupcs-web=y
-          CONFIG_PACKAGE_luci-app-docker=y
-          CONFIG_PACKAGE_luci-app-frpc=y
-          CONFIG_PACKAGE_luci-app-hd-idle=y
-          CONFIG_PACKAGE_luci-app-kodexplorer=y
-          CONFIG_PACKAGE_luci-app-minidlna=y
-          CONFIG_PACKAGE_luci-app-openvpn=y
-          CONFIG_PACKAGE_luci-app-openvpn-server=y
-          CONFIG_PACKAGE_luci-app-qbittorrent=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-          CONFIG_PACKAGE_luci-app-ttyd=y
-          CONFIG_PACKAGE_luci-app-v2ray-server=y
-          CONFIG_PACKAGE_luci-app-verysync=y
-          CONFIG_PACKAGE_luci-app-webadmin=y
-          CONFIG_PACKAGE_luci-app-wireguard=y
-          CONFIG_PACKAGE_luci-app-wrtbwmon=y
-          CONFIG_PACKAGE_luci-app-unblockmusic=y
-          CONFIG_PACKAGE_luci-app-syncdial=y
-          CONFIG_PACKAGE_luci-app-ddns=y
-          CONFIG_PACKAGE_luci-app-splash=y
           CONFIG_PACKAGE_ luci-app-ssr-plus=y
-
-
+          CONFIG_PACKAGE_ luci-app-accesscontrol=y
+          CONFIG_PACKAGE_ luci-app-ddns=y
+          CONFIG_PACKAGE_ luci-app-guest-wifi=y
+          CONFIG_PACKAGE_ luci-app-haproxy-tcp=y
+          CONFIG_PACKAGE_ luci-app-mwan3=y
+          CONFIG_PACKAGE_ luci-app-mwan3helper=y
+          CONFIG_PACKAGE_ luci-app-netdata=y
+          CONFIG_PACKAGE_ luci-app-nft-qos=y
+          CONFIG_PACKAGE_ luci-app-noddos=y
+          CONFIG_PACKAGE_ luci-app-p910nd=y
+          CONFIG_PACKAGE_ luci-app-splash=y
+          CONFIG_PACKAGE_ luci-app-sqm=y
+          CONFIG_PACKAGE_ luci-app-syncdial=y
+          CONFIG_PACKAGE_ luci-app-usb-printer=y
+          CONFIG_PACKAGE_ luci-app-wrtbwmon=y
           EOF
 
           # LuCI主题:
@@ -175,6 +173,8 @@ jobs:
           CONFIG_PACKAGE_luci-theme-argon=y
           CONFIG_PACKAGE_luci-theme-netgear=y
           CONFIG_PACKAGE_luci-theme-bootstrap=y
+          CONFIG_PACKAGE_luci-theme-material=y
+          CONFIG_PACKAGE_luci-luci-theme-purple=y
           EOF
 
           # 常用软件包:
