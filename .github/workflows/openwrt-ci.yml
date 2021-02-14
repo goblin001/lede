@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: Gblin2.0
+name: Goblin1.0
 
 on:
   push:
@@ -172,8 +172,6 @@ jobs:
           CONFIG_PACKAGE_ luci-app-ssr-plus=y
           CONFIG_PACKAGE_ luci-app-passwall=y
           CONFIG_PACKAGE_ luci-app-dockerman=y
-          CONFIG_PACKAGE_ luci-lib-docker=y
-          CONFIG_PACKAGE_ luci-app-qbittorrent=y
           CONFIG_PACKAGE_ luci-app-nps=y
           CONFIG_PACKAGE_ luci-app-clash=y
           EOF
@@ -186,7 +184,7 @@ jobs:
           CONFIG_PACKAGE_luci-theme-material=y
           CONFIG_PACKAGE_luci-luci-theme-purple=y
           CONFIG_PACKAGE_luci-theme-infinityfreedom=y
-          CONFIG_PACKAGE_luci-theme-luci-theme-darkmatter=y
+          CONFIG_PACKAGE_luci-theme-darkmatter=y
           EOF
 
           # 常用软件包:
